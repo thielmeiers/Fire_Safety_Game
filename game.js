@@ -10,6 +10,7 @@ var config = {
             }
         },
         scene: {
+
             preload: preload,
             create: create,
             update: update
@@ -23,26 +24,35 @@ var config = {
 
     var game = new Phaser.Game(config);
 
+
+
     function preload ()
     {
         this.load.image('bg', 'assets/background.png');
         this.load.image('ground', 'assets/platform.png');
 
-        this.load.spritesheet('fire', 'assets/Fire2.png', {frameWidth: 64, frameHeight: 64});
+
         this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});
     }
 
     function create ()
     {
-        this.physics.world.setBounds(0,0,1600,1200);
 
-        bg = this.add.image(400,280,'bg');
-          
+        var camera = this.cameras.main.setBounds(0,0,2000*2,2000*2);
+        this.physics.world.setBounds(0,0,2000*2,2000*2);
 
+        this.add.image(0,0,'bg').setOrigin(0);
+        this.add.image(2000,0,'bg').setOrigin(0).setFlipX(true);
+        this.add.image(0,2000,'bg').setOrigin(0).setFlipY(true);
+        this.add.image(2000,2000).setOrigin(0).setFlipX(true).setFlipY(true);
+
+
+
+        keys = this.input.keyboard.addKeys("W,A,S,D");
 
         platforms = this.physics.add.staticGroup();
 
-        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
 
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
@@ -50,14 +60,10 @@ var config = {
 
         player = this.physics.add.sprite(100, 500, 'dude');
         player.setSize(32,52,true);
-        fire = this.physics.add.sprite(200,300,'fire');
 
-        this.anims.create({
-            key: 'fire',
-            frames: this.anims.generateFrameNumbers('fire', {start: 1, end: 59}),
-            frameRate:30,
-            repeat: -1
-        })
+
+
+
 
         player.setCollideWorldBounds(true);
 
@@ -91,8 +97,8 @@ var config = {
         });
 
 
-        keys = this.input.keyboard.addKeys("W,A,S,D");
 
+        camera.startFollow(player);
 
         this.physics.add.collider(player, platforms);
 
@@ -102,10 +108,16 @@ var config = {
 
     function update ()
     {
-        fire.anims.play('fire',true);
+
+        var scrol_x = player.x - game.config.width/2;
+        var scrol_y = player.y - game.config.height/2;
+
 
         player.setVelocityX(0);
         player.setVelocityY(0);
+
+        this.cameras.main.scrollX = scrol_x;
+        this.cameras.main.scrollY = scrol_y;
 
         if (keys.A.isDown)
         {
@@ -135,10 +147,4 @@ var config = {
         {
             player.anims.stop();
         }
-    }
-
-
-    function collectStar (player, star)
-    {
-        star.disableBody(true, true);
     }
