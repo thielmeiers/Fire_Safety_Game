@@ -1,3 +1,8 @@
+// Imports the base-templates made for a load and menu scene
+import MenuScene from './scene/MenuScene.js'
+import LoadScene from './scene/LoadScene.js'
+
+//sets configuration for game elements
 var config = {
         type: Phaser.AUTO,
         width: 800,
@@ -9,6 +14,12 @@ var config = {
                 debug: false
             }
         },
+        //Convert "scene: " to match below to get scenes to work
+        //scene: [MenuScene,LoadScene],
+
+        //    preload: preload,
+        //    create: create,
+        //    update: update
         scene: {
 
             preload: preload,
@@ -17,10 +28,12 @@ var config = {
         }
     };
 
+//game variables
     var player;
     var platforms;
     var cursors;
     var keys;
+
 
     var game = new Phaser.Game(config);
 
@@ -37,17 +50,18 @@ var config = {
 
     function create ()
     {
-
+// creates camera and sets the boundaries for it
         var camera = this.cameras.main.setBounds(0,0,2000*2,2000*2);
+// sets world bounds to be 4000 x 4000
         this.physics.world.setBounds(0,0,2000*2,2000*2);
-
+// creates a 4 x 4 of the 2000 x 2000 png image loaded as the background asset
         this.add.image(0,0,'bg').setOrigin(0);
         this.add.image(2000,0,'bg').setOrigin(0).setFlipX(true);
         this.add.image(0,2000,'bg').setOrigin(0).setFlipY(true);
         this.add.image(2000,2000).setOrigin(0).setFlipX(true).setFlipY(true);
 
 
-
+// creates the keys used for movement
         keys = this.input.keyboard.addKeys("W,A,S,D");
 
         platforms = this.physics.add.staticGroup();
@@ -58,13 +72,12 @@ var config = {
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
 
+// creates the player from a spritesheet
         player = this.physics.add.sprite(100, 500, 'dude');
-        player.setSize(32,52,true);
-
-
-
-
-
+// sets the player hitbox without changing image size
+        player.setSize(32,50,true);
+// moves the hitbox position to better fit the player image inside hitbox
+        player.setOffset(16,12,true);
         player.setCollideWorldBounds(true);
 
         this.anims.create({
@@ -99,6 +112,7 @@ var config = {
 
 
         camera.startFollow(player);
+        camera.setZoom(4.5);
 
         this.physics.add.collider(player, platforms);
 
@@ -108,14 +122,14 @@ var config = {
 
     function update ()
     {
-
+// variables used to follow player's x & y cords
         var scrol_x = player.x - game.config.width/2;
         var scrol_y = player.y - game.config.height/2;
 
 
         player.setVelocityX(0);
         player.setVelocityY(0);
-
+// moves main camera based on player x & y cords
         this.cameras.main.scrollX = scrol_x;
         this.cameras.main.scrollY = scrol_y;
 
