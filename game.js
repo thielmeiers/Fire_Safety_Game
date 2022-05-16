@@ -1,6 +1,3 @@
-// Imports the base-templates made for a load and menu scene
-import MenuScene from './scene/MenuScene.js'
-import LoadScene from './scene/LoadScene.js'
 
 //sets configuration for game elements
 var config = {
@@ -14,12 +11,7 @@ var config = {
                 debug: false
             }
         },
-        //Convert "scene: " to match below to get scenes to work
-        //scene: [MenuScene,LoadScene],
 
-        //    preload: preload,
-        //    create: create,
-        //    update: update
         scene: {
 
             preload: preload,
