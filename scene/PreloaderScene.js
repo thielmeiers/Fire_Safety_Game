@@ -31,6 +31,7 @@ class PreloaderScene extends Phaser.Scene{
     this.load.image('bg', 'assets/background.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});
+    this.load.image('testInteractable', 'assets/interactable.png');
 
     // placeholder
     this.load.image('logo','assets/PhaserLogo.png');
