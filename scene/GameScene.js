@@ -89,7 +89,7 @@ class GameScene extends Phaser.Scene{
       camera.startFollow(player);
       camera.setZoom(2);
 
-      
+
 
   }
 
