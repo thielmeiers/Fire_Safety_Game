@@ -47,8 +47,8 @@ class GameScene extends Phaser.Scene{
       //creates test interactable 100 pixels in front of 'dude' asset
       testInteractable = interactables.create(200, 500, 'testInteractable');
       //creates winTestBlock and loseTestBlock
-      winTestBlock = interactables.create(10, 10, 'winBlock');
-      loseTestBlock = interactables.create(50, 10, 'loseBlock');
+      winTestBlock = interactables.create(300, 550, 'winBlock');
+      loseTestBlock = interactables.create(340, 550, 'loseBlock');
       //changes created interactable hitbox size
       testInteractable.setSize(10,10);
 //checks for interactionBox overlap
