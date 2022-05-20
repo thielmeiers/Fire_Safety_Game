@@ -24,6 +24,7 @@ function pause_game() {
   if (pflag == 1) {
     console.log('resume');
     create.scene.resume('Game');
+    create.scene.stop('test');
     pflag = 0;}
   else {
     console.log('pause');
