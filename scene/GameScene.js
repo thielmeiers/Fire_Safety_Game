@@ -165,7 +165,7 @@ class GameScene extends Phaser.Scene{
 
 
 
-}
+};
 export default GameScene
 
 //interaction function
@@ -173,4 +173,4 @@ function interaction(interactionBox, interactable){
     if(keys.E.isDown){
         interactable.destroy();
     }
-}
+};

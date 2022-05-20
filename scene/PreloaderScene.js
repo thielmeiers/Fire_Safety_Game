@@ -40,9 +40,8 @@ class PreloaderScene extends Phaser.Scene{
   }
   create()  {
 
-
-
-
+    //Launches the ui with the game
+    this.scene.start('ui-scene')
     this.scene.start('Game');
   }
   update()  {
