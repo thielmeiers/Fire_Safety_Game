@@ -16,7 +16,7 @@ class MenuScene extends Phaser.Scene {
     this.cameras.main.backgroundColor.setTo(255,255,255);
 
     // creates "Menu" text in top left of window
-    this.add.text(10,10,'Menu', {font: '48px Arial', fill: 'black'});
+    this.add.text(10,10,'Fire Safety Game', {font: '48px Arial', fill: 'black'});
 
     // creates a start Button makes interactive, and ties it to start 'Boot' Scene after clicking
     const startButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Start game')
@@ -25,8 +25,18 @@ class MenuScene extends Phaser.Scene {
       .setStyle({ backgroundColor: '#111' })
       .setInteractive({ useHandCursor: true })
 
-      .on('pointerover', () => { console.log('pointerover');})
+      .on('pointerover', () => { console.log('pointeroverstart');})
       .on('pointerup', () => this.scene.start('Boot'))
+
+    // creates info button
+    const infoButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY+100, 'How to play')
+      .setOrigin(0.5)
+      .setPadding(10)
+      .setStyle({ backgroundColor: '#111' })
+      .setInteractive({ useHandCursor: true })
+
+      .on('pointerover', () => { console.log('pointeroverinfo');})
+      .on('pointerup', () => this.scene.start('Info'))
 
 
 

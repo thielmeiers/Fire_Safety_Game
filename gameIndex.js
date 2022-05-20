@@ -4,6 +4,7 @@ import GameScene from './scene/GameScene.js'
 import BootScene from './scene/BootScene.js'
 import PreloaderScene from './scene/PreloaderScene.js'
 import MenuScene from './scene/MenuScene.js'
+import InfoScene from './scene/InfoScene.js'
 
 //game variables
 
@@ -16,6 +17,7 @@ class Game extends Phaser.Game  {
     this.scene.add('Boot', BootScene);
     this.scene.add('Menu',  MenuScene);
     this.scene.add('Preloader', PreloaderScene);
+    this.scene.add('Info', InfoScene);
     this.scene.start('Menu');
   }
 }
