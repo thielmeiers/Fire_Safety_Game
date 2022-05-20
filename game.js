@@ -33,15 +33,21 @@ var config = {
 
     function preload ()
     {
-        this.load.image('bg', 'assets/background.png');
-        this.load.image('ground', 'assets/platform.png');
+      game.load.tilemap('FireMap', 'assets\FireMap.json', null, Phaser.Tilemap.TILED_JSON);
+      game.load.image('tiles', 'assets\FireMap Tileset.png');
 
 
         this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});
     }
+    var map;
+    var layer;
 
     function create ()
     {
+
+      map = game.add.tilemap('FireMap');
+      map.addTilesetImages('Bed','Bed (flipped)','Closet','Closet (flipped)')
+      layer = map.createLayer('Tile Layer 1')
 // creates camera and sets the boundaries for it
         var camera = this.cameras.main.setBounds(0,0,2000*2,2000*2);
 // sets world bounds to be 4000 x 4000
