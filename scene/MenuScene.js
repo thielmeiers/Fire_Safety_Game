@@ -1,17 +1,21 @@
-
+var click
 class MenuScene extends Phaser.Scene {
 
   constructor() {
     super('Menu');
   }
+
+
   init(data)  {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
   preload() {
     this.load.image('start_button','assets/playbutton.png');
+    this.load.audio('click', ['assets/audio/UIClick.ogg', 'assets/audio/UIClick.mp3']);
   }
   create(data)  {
-
+    //creates click
+    click = this.sound.add('click');
     //sets background color of menu scene
     this.cameras.main.backgroundColor.setTo(255,255,255);
 
@@ -26,7 +30,8 @@ class MenuScene extends Phaser.Scene {
       .setInteractive({ useHandCursor: true })
 
       .on('pointerover', () => { console.log('pointeroverstart');})
-      .on('pointerup', () => this.scene.start('Boot'))
+      .on('pointerup', () => this.scene.start('Boot'), )
+      .on('pointerup', () => click.play())
 
     // creates info button
     const infoButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY+100, 'How to play')
@@ -37,6 +42,7 @@ class MenuScene extends Phaser.Scene {
 
       .on('pointerover', () => { console.log('pointeroverinfo');})
       .on('pointerup', () => this.scene.start('Info'))
+      .on('pointerup', () => click.play())
 
 
 

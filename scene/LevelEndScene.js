@@ -1,3 +1,4 @@
+var click
 class LevelEndScene extends Phaser.Scene{
   constructor(){
     super('LevelEnd');
@@ -6,8 +7,12 @@ class LevelEndScene extends Phaser.Scene{
     this.isSuccessful = data.isSuccessful;
     this.cursors = this.input.keyboard.createCursorKeys();
   }
+  preload(){
+    this.load.audio('click', ['assets/audio/UIClick.ogg', 'assets/audio/UIClick.mp3']);
+  }
 
   create(data){
+    click = this.sound.add('click');
     this.cameras.main.backgroundColor.setTo(255,255,255);
     if(this.isSuccessful == true){
       this.add.text(10, 70,'You found all of the hazards!\nGood Job!', {font: '48px Arial', fill: 'black'});
@@ -20,6 +25,7 @@ class LevelEndScene extends Phaser.Scene{
 
         .on('pointerover', () => { console.log('pointerovercontinue');})
         .on('pointerup', () => this.scene.start('Boot'))
+        .on('pointerup', () => click.play())
 
       const backButton = this.add.text(100, 50, 'Return to menu')
         .setOrigin(0.5)
@@ -29,6 +35,7 @@ class LevelEndScene extends Phaser.Scene{
 
         .on('pointerover', () => { console.log('pointeroverback');})
         .on('pointerup', () => this.scene.start('Menu'))
+        .on('pointerup', () => click.play())
     }
     else{
         this.add.text(10,70,'You didn\'t find all of the hazards,\n resulting in a fire.', {font: '48px Arial', fill: 'black'});
@@ -40,6 +47,7 @@ class LevelEndScene extends Phaser.Scene{
 
           .on('pointerover', () => { console.log('pointeroverretry');})
           .on('pointerup', () => this.scene.start('Game'))
+          .on('pointerup', () => click.play())
 
         const backButton = this.add.text(100, 50, 'Return to menu')
           .setOrigin(0.5)
@@ -49,6 +57,7 @@ class LevelEndScene extends Phaser.Scene{
 
           .on('pointerover', () => { console.log('pointeroverback');})
           .on('pointerup', () => this.scene.start('Menu'))
+          .on('pointerup', () => click.play())
     }
   }
 }

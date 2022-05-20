@@ -34,6 +34,7 @@ class PreloaderScene extends Phaser.Scene{
     this.load.image('testInteractable', 'assets/interactable.png');
     this.load.image('winBlock', 'assets/winBlock.png');
     this.load.image('loseBlock', 'assets/loseBlock.png');
+    this.load.audio('click', ['assets/audio/UIClick.ogg', 'assets/audio/UIClick.mp3']);
 
     // placeholder
     this.load.image('logo','assets/PhaserLogo.png');
