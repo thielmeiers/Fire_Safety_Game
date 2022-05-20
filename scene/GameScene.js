@@ -5,6 +5,12 @@ var player
 var interactionBox
 var interactables
 var testInteractable
+var winTestBlock
+var loseTestBlock
+var isSuccessful
+var startSuccessEnd
+var startFailEnd
+var createGame
 
 class GameScene extends Phaser.Scene{
   constructor(){
@@ -12,6 +18,7 @@ class GameScene extends Phaser.Scene{
   }
   create ()
   {
+      createGame = this;
 
 // creates camera and sets the boundaries for it
       var camera = this.cameras.main.setBounds(0,0,2000*2,2000*2);
@@ -26,8 +33,6 @@ class GameScene extends Phaser.Scene{
       interactionBox = this.physics.add.sprite('10', '10', 'interactionBox');
       interactionBox.body.setImmovable(true);
       interactionBox.visible = false;
-
-
 // creates the keys used for movement
       keys = this.input.keyboard.addKeys("W,A,S,D,E,P");
 
@@ -41,6 +46,9 @@ class GameScene extends Phaser.Scene{
 
       //creates test interactable 100 pixels in front of 'dude' asset
       testInteractable = interactables.create(200, 500, 'testInteractable');
+      //creates winTestBlock and loseTestBlock
+      winTestBlock = interactables.create(10, 10, 'winBlock');
+      loseTestBlock = interactables.create(50, 10, 'loseBlock');
       //changes created interactable hitbox size
       testInteractable.setSize(10,10);
 //checks for interactionBox overlap
@@ -166,11 +174,18 @@ class GameScene extends Phaser.Scene{
 
 
 }
+
 export default GameScene
 
-//interaction function
+//interaction function with win and lose testing paths
 function interaction(interactionBox, interactable){
     if(keys.E.isDown){
+      if(interactable == winTestBlock){
+        createGame.scene.start('LevelEnd', {isSuccessful : true});
+      }
+      else if(interactable == loseTestBlock){
+        createGame.scene.start('LevelEnd', {isSuccessful : false});
+      }
         interactable.destroy();
     }
 }
