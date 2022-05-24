@@ -33,8 +33,13 @@ var config = {
 
     function preload ()
     {
+<<<<<<< HEAD
       game.load.tilemap('FireMap', 'assets/FireMap.json', null, Phaser.Tilemap.TILED_JSON);
       game.load.image('tiles', 'assets/FireMap Tileset.png');
+=======
+      game.load.tilemap('FireMap', 'assets\FireMap.json', null, Phaser.Tilemap.TILED_JSON);
+      game.load.image('tiles', 'assets\FireMap Tileset.png');
+>>>>>>> 833d84477581289cfb1290c530d561c488dc7060
 
 
         this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});

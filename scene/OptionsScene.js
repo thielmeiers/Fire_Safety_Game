@@ -25,3 +25,4 @@ class OptionsScene extends Phaser.Scene {
       .on('pointerup', () => click.play())
   }
 }
+export default OptionsScene

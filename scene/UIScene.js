@@ -27,12 +27,12 @@ function pause_game() {
   if (pflag == 1) {
     console.log('resume');
     create.scene.resume('Game');
-    create.scene.stop('test');
+    create.scene.stop('Options');
     pflag = 0;}
   else {
     console.log('pause');
     create.scene.pause('Game');
-    create.scene.launch('test');
+    create.scene.launch('Options');
     pflag = 1;
   }
   }
