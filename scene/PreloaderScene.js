@@ -25,11 +25,13 @@ class PreloaderScene extends Phaser.Scene{
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
 
+    this.load.audio('walking','assets/audio/player_walking.mp3')
 
+    //loads map assets
     this.load.image('FireMap','assets/FireMap.png');
     this.load.image('wall', 'assets/wall.png');
 
-    // Loads assets into game
+    // Loads assets game assets
 
     this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});
     this.load.image('testInteractable', 'assets/interactable.png');

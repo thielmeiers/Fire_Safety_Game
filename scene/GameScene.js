@@ -12,6 +12,7 @@ var startSuccessEnd
 var startFailEnd
 var createGame
 
+
 class GameScene extends Phaser.Scene{
   constructor(){
     super('Game');
@@ -40,7 +41,14 @@ class GameScene extends Phaser.Scene{
       interactionBox.body.setImmovable(true);
       interactionBox.visible = false;
 // creates the keys used for movement
-      keys = this.input.keyboard.addKeys("W,A,S,D,E,P");
+      keys = this.input.keyboard.addKeys("W,A,S,D,E");
+
+// creates audio
+      this.walkingSound = this.sound.add('walking', {
+          volume: 1,
+          
+      })
+
 
 // creates the player from a spritesheet
       player = this.physics.add.sprite(130, 300, 'dude');
@@ -130,6 +138,7 @@ class GameScene extends Phaser.Scene{
           player.setVelocityX(-160);
 
           player.anims.play('left', true);
+          this.walkingSound.play();
           //changes position of interactionBox
           interactionBox.setSize(32, 32);
           interactionBox.body.setSize(32, 32);
