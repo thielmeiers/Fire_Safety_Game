@@ -11,6 +11,7 @@ var isSuccessful
 var startSuccessEnd
 var startFailEnd
 var createGame
+var walls
 
 class GameScene extends Phaser.Scene{
   constructor(){
@@ -57,12 +58,49 @@ class GameScene extends Phaser.Scene{
       loseTestBlock = interactables.create(340, 500, 'loseBlock');
       //changes created interactable hitbox size
       testInteractable.setSize(10,10);
+//creates a lot of walls
+      walls = this.physics.add.staticGroup();
+
+      this.physics.add.collider(player, walls);
+      //main 4 walls
+      walls.create(96, -5, 'wall').setSize(32, 1120);
+      walls.create(650, -5, 'wall').setSize(1120, 32);
+      walls.create(1023,27, 'wall').setSize(32, 1120);
+      walls.create(650, 540, 'wall').setSize(1220, 32);
+      //longer inner walls
+      walls.create(369, 188, 'wall').setSize(444, 32);
+      walls.create(224, 90, 'wall').setSize(32, 200);
+      walls.create(575, 90, 'wall').setSize(32, 200);
+      //double-wide walls
+      walls.create(719, 90, 'wall').setSize(64, 200);
+      walls.create(879, 90, 'wall').setSize(64, 200);
+      walls.create(880, 432, 'wall').setSize(64, 200);
+      walls.create(720, 432, 'wall').setSize(64, 200);
+      walls.create(560, 432, 'wall').setSize(64, 200);
+      walls.create(400, 432, 'wall').setSize(64, 200);
+      walls.create(240, 432, 'wall').setSize(64, 200);
+      //hallway-facing walls
+      walls.create(176, 348, 'wall').setSize(63, 32);
+      walls.create(338, 348, 'wall').setSize(63, 32);
+      walls.create(500, 348, 'wall').setSize(63, 32);
+      walls.create(659, 348, 'wall').setSize(63, 32);
+      walls.create(821, 348, 'wall').setSize(63, 32);
+      walls.create(689, 188, 'wall').setSize(124, 32);
+      walls.create(849, 188, 'wall').setSize(124, 32);
+      walls.create(1009, 188, 'wall').setSize(124, 32);
+      //small blocks near exit
+      walls.create(896, 315, 'wall');
+      walls.create(991, 316, 'wall');
+
+
+
+
 //checks for interactionBox overlap
       this.physics.add.collider(player, interactables);
       this.physics.add.overlap(interactionBox, interactables, interaction);
 
 // sets the player hitbox without changing image size
-      player.setSize(32,50,true);
+      player.setSize(30,50,true);
 // moves the hitbox position to better fit the player image inside hitbox
       player.setOffset(16,12,true);
       player.setCollideWorldBounds(true);
