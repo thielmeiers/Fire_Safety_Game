@@ -1,0 +1,30 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "KP_floor_tile.tsx": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 3
+        }
+    },
+    "last.imagePath": "C:/Users/jaxon/Desktop/Piskel-0.14.0/CS 260 Fire Safety Assests",
+    "map.height": 30,
+    "map.lastUsedFormat": "json",
+    "map.width": 40,
+    "openFiles": [
+    ],
+    "project": "Fire Safety Map.tiled-project",
+    "recentFiles": [
+        "KP_floor_tile.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    }
+}
