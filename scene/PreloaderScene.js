@@ -26,15 +26,11 @@ class PreloaderScene extends Phaser.Scene{
     var height = this.cameras.main.height;
 
 
-    this.load.image('tiles', 'assets/FireMapSet.png');
-      console.log('fire map tileset loaded');
-    this.load.tilemapTiledJSON('FireMap',"assets/FireMap.json");
-      console.log('fire map preload is Successful');
-
+    this.load.image('FireMap','assets/FireMap.png');
+    this.load.image('wall', 'assets/wall.png');
 
     // Loads assets into game
-    this.load.image('bg', 'assets/background.png');
-    this.load.image('ground', 'assets/platform.png');
+
     this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});
     this.load.image('testInteractable', 'assets/interactable.png');
     this.load.image('winBlock', 'assets/winBlock.png');
@@ -49,7 +45,7 @@ class PreloaderScene extends Phaser.Scene{
   create()  {
 
     //Launches the ui with the game
-    
+
     this.scene.start('Menu');
   }
   update()  {

@@ -23,14 +23,16 @@ class GameScene extends Phaser.Scene{
 
       this.scene.launch('ui-scene');
 
-      
+      this.add.image(400,300,'FireMap');
+
 
       createGame = this;
 
 // creates camera and sets the boundaries for it
       var camera = this.cameras.main.setBounds(0,0,2000*2,2000*2);
+      this.cameras.main.setBackgroundColor('red');
 // sets world bounds to be 4000 x 4000
-      this.physics.world.setBounds(0,0,2000*2,2000*2);
+      this.physics.world.setBounds('FireMap');
 // creates a 4 x 4 of the 2000 x 2000 png image loaded as the background asset
 
 // creates player interactionBox
@@ -41,7 +43,7 @@ class GameScene extends Phaser.Scene{
       keys = this.input.keyboard.addKeys("W,A,S,D,E,P");
 
 // creates the player from a spritesheet
-      player = this.physics.add.sprite(100, 500, 'dude');
+      player = this.physics.add.sprite(130, 300, 'dude');
       interactionBox.setX(player.x);
       interactionBox.setY(player.y);
 
@@ -49,10 +51,10 @@ class GameScene extends Phaser.Scene{
       interactables = this.physics.add.staticGroup();
 
       //creates test interactable 100 pixels in front of 'dude' asset
-      testInteractable = interactables.create(200, 500, 'testInteractable');
+      testInteractable = interactables.create(180, 500, 'testInteractable');
       //creates winTestBlock and loseTestBlock
-      winTestBlock = interactables.create(300, 550, 'winBlock');
-      loseTestBlock = interactables.create(340, 550, 'loseBlock');
+      winTestBlock = interactables.create(300, 500, 'winBlock');
+      loseTestBlock = interactables.create(340, 500, 'loseBlock');
       //changes created interactable hitbox size
       testInteractable.setSize(10,10);
 //checks for interactionBox overlap
