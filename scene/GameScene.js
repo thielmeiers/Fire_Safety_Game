@@ -12,6 +12,12 @@ var startSuccessEnd
 var startFailEnd
 var createGame
 var walls
+var candle
+var extensionCord
+var toaster
+var closet
+var hazards
+
 
 
 var physics
@@ -100,6 +106,13 @@ class GameScene extends Phaser.Scene{
       physics.create(670,490,'bed').toggleFlipY().toggleFlipX(); // 4th room on bottom
       physics.create(830,490,'bed').toggleFlipY().toggleFlipX(); // 5th room on bottom
 
+      //fire hazards
+      hazards = [candle, toaster, extensionCord, closet];
+      candle = this.physics.add.sprite(445, 500, 'candle');
+      toaster = physics.create(670, 156, 'toaster').toggleFlipY();
+      extensionCord = physics.create(768, 465, 'cord');
+      closet = physics.create(155, 27, 'closet').toggleFlipX().toggleFlipY();
+
 //creates a lot of walls
 
       //main 4 walls
@@ -145,6 +158,12 @@ class GameScene extends Phaser.Scene{
       player.setOffset(16,12,true);
       player.setCollideWorldBounds(true);
 
+      this.anims.create({
+        key: 'flicker',
+        frames: this.anims.generateFrameNumbers('candle', {start: 0, end: 8}),
+        frameRate: 15,
+        repeat: -1
+      });
 
 
       this.anims.create({
@@ -183,6 +202,7 @@ class GameScene extends Phaser.Scene{
   }
 
   update()  {
+          candle.anims.play('flicker', true);
     // variables used to follow player's x & y cords
           var scrol_x = player.x - game.config.width/2;
           var scrol_y = player.y - game.config.height/2;
