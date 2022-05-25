@@ -132,53 +132,6 @@ class GameScene extends Phaser.Scene{
       physics.create(896, 315, 'wall');
       physics.create(991, 316, 'wall');
 
-//checks for interactionBox overlap
-      this.physics.add.collider(player, interactables);
-      this.physics.add.collider(player, physics);
-
-      //creates test interactable 100 pixels in front of 'dude' asset
-      testInteractable = interactables.create(180, 500, 'testInteractable');
-      //creates winTestBlock and loseTestBlock
-      winTestBlock = interactables.create(300, 500, 'winBlock');
-      loseTestBlock = interactables.create(340, 500, 'loseBlock');
-      //changes created interactable hitbox size
-      testInteractable.setSize(10,10);
-//creates a lot of walls
-      walls = this.physics.add.staticGroup();
-
-      this.physics.add.collider(player, walls);
-      //main 4 walls
-      walls.create(96, -5, 'wall').setSize(32, 1120);
-      walls.create(650, -5, 'wall').setSize(1120, 32);
-      walls.create(1023,27, 'wall').setSize(32, 1120);
-      walls.create(650, 540, 'wall').setSize(1220, 32);
-      //longer inner walls
-      walls.create(369, 188, 'wall').setSize(444, 32);
-      walls.create(224, 90, 'wall').setSize(32, 200);
-      walls.create(575, 90, 'wall').setSize(32, 200);
-      //double-wide walls
-      walls.create(719, 90, 'wall').setSize(64, 200);
-      walls.create(879, 90, 'wall').setSize(64, 200);
-      walls.create(880, 432, 'wall').setSize(64, 200);
-      walls.create(720, 432, 'wall').setSize(64, 200);
-      walls.create(560, 432, 'wall').setSize(64, 200);
-      walls.create(400, 432, 'wall').setSize(64, 200);
-      walls.create(240, 432, 'wall').setSize(64, 200);
-      //hallway-facing walls
-      walls.create(176, 348, 'wall').setSize(63, 32);
-      walls.create(338, 348, 'wall').setSize(63, 32);
-      walls.create(500, 348, 'wall').setSize(63, 32);
-      walls.create(659, 348, 'wall').setSize(63, 32);
-      walls.create(821, 348, 'wall').setSize(63, 32);
-      walls.create(689, 188, 'wall').setSize(124, 32);
-      walls.create(849, 188, 'wall').setSize(124, 32);
-      walls.create(1009, 188, 'wall').setSize(124, 32);
-      //small blocks near exit
-      walls.create(896, 315, 'wall');
-      walls.create(991, 316, 'wall');
-
-
-
 
 //checks for interactionBox overlap
       this.physics.add.collider(player, interactables);
@@ -229,107 +182,91 @@ class GameScene extends Phaser.Scene{
 
   }
 
+  update()  {
+    // variables used to follow player's x & y cords
+          var scrol_x = player.x - game.config.width/2;
+          var scrol_y = player.y - game.config.height/2;
 
 
 
-      camera.startFollow(player);
-      camera.setZoom(2);
+
+          player.setVelocityX(0);
+          player.setVelocityY(0);
+    // moves main camera based on player x & y cords
+          this.cameras.main.scrollX = scrol_x;
+          this.cameras.main.scrollY = scrol_y;
 
 
 
+
+
+
+    // Player Movement
+          if (keys.A.isDown)
+          {
+              player.setVelocityX(-160);
+
+              player.anims.play('left', true);
+              this.walkingSound.play();
+              //changes position of interactionBox
+              interactionBox.setSize(32, 32);
+              interactionBox.body.setSize(32, 32);
+              interactionBox.setX(player.x - 28);
+              interactionBox.setY(player.y + 10);
+          }
+          else if (keys.D.isDown)
+          {
+              player.setVelocityX(160);
+
+              player.anims.play('right', true);
+              //changes position of interactionBox
+              interactionBox.setSize(32, 32);
+              interactionBox.body.setSize(32, 32);
+              interactionBox.setX(player.x + 28);
+              interactionBox.setY(player.y + 10);
+            }
+          else if (keys.W.isDown)
+          {
+              player.setVelocityY(-160);
+
+              player.anims.play('up',true);
+              //changes position of interactionBox
+              interactionBox.setSize(32, 32);
+              interactionBox.body.setSize(32, 32);
+              interactionBox.setX(player.x );
+              interactionBox.setY(player.y - 20);
+          }
+          else if (keys.S.isDown)
+          {
+              player.setVelocityY(160);
+              player.anims.play('down',true);
+              //changes position of interactionBox
+              interactionBox.setSize(32, 32);
+              interactionBox.body.setSize(32, 32);
+              interactionBox.setX(player.x );
+              interactionBox.setY(player.y + 40);
+
+          }
+          else if (keys.P.isDown)
+          {
+              console.log(player.x, "is x");
+              console.log(player.y, "is y");
+
+
+          }
+          else
+          {
+              player.anims.stop();
+
+              this.walkingSound.stop();
+          }
   }
 
-
-
-  {
-// variables used to follow player's x & y cords
-      var scrol_x = player.x - game.config.width/2;
-      var scrol_y = player.y - game.config.height/2;
-
-
-
-
-      player.setVelocityX(0);
-      player.setVelocityY(0);
-// moves main camera based on player x & y cords
-      this.cameras.main.scrollX = scrol_x;
-      this.cameras.main.scrollY = scrol_y;
-
-
-
-
-
-
-// Player Movement
-      if (keys.A.isDown)
-      {
-          player.setVelocityX(-160);
-
-          player.anims.play('left', true);
-          this.walkingSound.play();
-          //changes position of interactionBox
-          interactionBox.setSize(32, 32);
-          interactionBox.body.setSize(32, 32);
-          interactionBox.setX(player.x - 28);
-          interactionBox.setY(player.y + 10);
-      }
-      else if (keys.D.isDown)
-      {
-          player.setVelocityX(160);
-
-          player.anims.play('right', true);
-          //changes position of interactionBox
-          interactionBox.setSize(32, 32);
-          interactionBox.body.setSize(32, 32);
-          interactionBox.setX(player.x + 28);
-          interactionBox.setY(player.y + 10);
-        }
-      else if (keys.W.isDown)
-      {
-          player.setVelocityY(-160);
-
-          player.anims.play('up',true);
-          //changes position of interactionBox
-          interactionBox.setSize(32, 32);
-          interactionBox.body.setSize(32, 32);
-          interactionBox.setX(player.x );
-          interactionBox.setY(player.y - 20);
-      }
-      else if (keys.S.isDown)
-      {
-          player.setVelocityY(160);
-          player.anims.play('down',true);
-          //changes position of interactionBox
-          interactionBox.setSize(32, 32);
-          interactionBox.body.setSize(32, 32);
-          interactionBox.setX(player.x );
-          interactionBox.setY(player.y + 40);
-
-      }
-      else if (keys.P.isDown)
-      {
-          console.log(player.x, "is x");
-          console.log(player.y, "is y");
-
-
-      }
-      else
-      {
-          player.anims.stop();
-
-          this.walkingSound.stop();
-      }
-  }
-
-      }
-  }
-
-
-
-
-
->>>>>>> 3949c0ff87934c967ed0ff9f0c3d1df3500dc66b
 }
+
+
+
+
 
 export default GameScene
 
