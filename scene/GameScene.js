@@ -47,7 +47,7 @@ class GameScene extends Phaser.Scene{
 // creates audio
       this.walkingSound = this.sound.add('walking', {
           volume: 1,
-          
+
       })
 
 
