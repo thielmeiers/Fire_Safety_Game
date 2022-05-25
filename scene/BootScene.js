@@ -6,7 +6,7 @@ class BootScene extends Phaser.Scene{
     this.load.image('HClogo','assets/HanoverLogo.png');
   }
   create()  {
-    this.scene.start('Preloader')
+    this.scene.start('Game')
   }
   update()  {
   }

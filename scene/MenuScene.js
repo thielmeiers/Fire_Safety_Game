@@ -14,6 +14,7 @@ class MenuScene extends Phaser.Scene {
     this.load.audio('click', ['assets/audio/UIClick.ogg', 'assets/audio/UIClick.mp3']);
   }
   create(data)  {
+    this.scene.stop('ui-scene');
     //creates click
     click = this.sound.add('click');
     //sets background color of menu scene

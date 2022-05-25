@@ -12,6 +12,7 @@ class LevelEndScene extends Phaser.Scene{
   }
 
   create(data){
+    this.scene.stop('ui-scene');
     click = this.sound.add('click');
     this.cameras.main.backgroundColor.setTo(255,255,255);
     if(this.isSuccessful == true){

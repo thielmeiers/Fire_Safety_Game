@@ -6,7 +6,7 @@ class TestScene extends Phaser.Scene {
     this.load.image('test', 'assets/test.png');
   }
   create()  {
-    this.add.image(100,100,'test');
+    this.add.image(300,300,'test');
   }
 }
 

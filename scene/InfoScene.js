@@ -11,6 +11,7 @@ class InfoScene extends Phaser.Scene{
   }
 
   create(data){
+    this.scene.stop('ui-scene');
     click = this.sound.add('click');
 
     this.add.text(0, 0, '0x0')

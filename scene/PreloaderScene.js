@@ -25,15 +25,28 @@ class PreloaderScene extends Phaser.Scene{
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
 
+    this.load.audio('walking','assets/audio/player_walking.mp3')
 
+    //loads map assets
+    this.load.image('FireMap','assets/FireMap.png');
+    this.load.image('wall', 'assets/wall.png');
 
-    // Loads assets into game
-    this.load.image('bg', 'assets/background.png');
-    this.load.image('ground', 'assets/platform.png');
+    // Loads assets game assets
+
     this.load.spritesheet('dude', 'assets/professor.png', { frameWidth: 64, frameHeight: 64});
     this.load.image('testInteractable', 'assets/interactable.png');
     this.load.image('winBlock', 'assets/winBlock.png');
     this.load.image('loseBlock', 'assets/loseBlock.png');
+    this.load.image('bed','assets/Bed.png');
+    this.load.image('closet','assets/Closet.png');
+    this.load.image('desk','assets/Desk.png');
+    this.load.image('window','assets/Window.png');
+    this.load.spritesheet('candle', 'assets/candle.png', {frameWidth: 32, frameWidth: 32});
+    this.load.image('toaster', 'assets/Toaster.png');
+    this.load.image('cord', 'assets/extensionCord.png');
+
+
+    // loads game audio
     this.load.audio('click', ['assets/audio/UIClick.ogg', 'assets/audio/UIClick.mp3']);
 
     // placeholder
@@ -44,8 +57,8 @@ class PreloaderScene extends Phaser.Scene{
   create()  {
 
     //Launches the ui with the game
-    this.scene.start('ui-scene')
-    this.scene.start('Game');
+
+    this.scene.start('Menu');
   }
   update()  {
 

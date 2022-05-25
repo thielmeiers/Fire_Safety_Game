@@ -8,6 +8,8 @@ import UIScene from './scene/UIScene.js'
 import TestScene from './scene/TestScene.js'
 import InfoScene from './scene/InfoScene.js'
 import LevelEndScene from './scene/LevelEndScene.js'
+import OptionsScene from './scene/OptionsScene.js'
+
 
 
 //game variables
@@ -25,7 +27,11 @@ class Game extends Phaser.Game  {
     this.scene.add('test', TestScene);
     this.scene.add('Info', InfoScene);
     this.scene.add('LevelEnd', LevelEndScene);
-    this.scene.start('Menu');
+    this.scene.add('Options', OptionsScene);
+    this.scene.start('Preloader');
+
+
+
 
   }
 }
