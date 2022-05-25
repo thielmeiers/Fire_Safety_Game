@@ -55,72 +55,52 @@ class GameScene extends Phaser.Scene{
 //creates interactables
       interactables = this.physics.add.staticGroup();
 
-// creates objects
-
-    //creates a physics variable for collision effects
-      physics = this.physics.add.staticGroup();
-
-      //north side desks
-      physics.create(125,35,'desk'); // 1st room on top
-      physics.create(605,35,'desk'); // 2nd room on top
-      physics.create(765,35,'desk'); // 3rd room on top
-      physics.create(925,35,'desk'); // 4th room on top
-
-      //south side desks
-      physics.create(125,500,'desk'); // 1st room on bottom
-      physics.create(285,500,'desk'); // 2nd room on bottom
-      physics.create(445,500,'desk'); // 3rd room on bottom
-      physics.create(605,500,'desk'); // 4th room on bottom
-      physics.create(765,500,'desk'); // 5th room on bottom
-
-      //north side beds
-      physics.create(190,45,'bed'); // 1st room on top
-      physics.create(670,45,'bed'); // 2nd room on top
-      physics.create(830,45,'bed'); // 3rd room on top
-      physics.create(990,45,'bed'); // 4th room on top
-
-      //south side beds
-      physics.create(190,490,'bed').toggleFlipY().toggleFlipX(); // 1st room on bottom
-      physics.create(350,490,'bed').toggleFlipY().toggleFlipX(); // 2nd room on bottom
-      physics.create(510,490,'bed').toggleFlipY().toggleFlipX(); // 3rd room on bottom
-      physics.create(670,490,'bed').toggleFlipY().toggleFlipX(); // 4th room on bottom
-      physics.create(830,490,'bed').toggleFlipY().toggleFlipX(); // 5th room on bottom
-
+      //creates test interactable 100 pixels in front of 'dude' asset
+      testInteractable = interactables.create(180, 500, 'testInteractable');
+      //creates winTestBlock and loseTestBlock
+      winTestBlock = interactables.create(300, 500, 'winBlock');
+      loseTestBlock = interactables.create(340, 500, 'loseBlock');
+      //changes created interactable hitbox size
+      testInteractable.setSize(10,10);
 //creates a lot of walls
+      walls = this.physics.add.staticGroup();
 
+      this.physics.add.collider(player, walls);
       //main 4 walls
-      physics.create(96, -5, 'wall').setSize(32, 1120);
-      physics.create(650, -5, 'wall').setSize(1120, 32);
-      physics.create(1023,27, 'wall').setSize(32, 1120);
-      physics.create(650, 540, 'wall').setSize(1220, 32);
+      walls.create(96, -5, 'wall').setSize(32, 1120);
+      walls.create(650, -5, 'wall').setSize(1120, 32);
+      walls.create(1023,27, 'wall').setSize(32, 1120);
+      walls.create(650, 540, 'wall').setSize(1220, 32);
       //longer inner walls
-      physics.create(369, 188, 'wall').setSize(444, 32);
-      physics.create(224, 90, 'wall').setSize(32, 200);
-      physics.create(575, 90, 'wall').setSize(32, 200);
+      walls.create(369, 188, 'wall').setSize(444, 32);
+      walls.create(224, 90, 'wall').setSize(32, 200);
+      walls.create(575, 90, 'wall').setSize(32, 200);
       //double-wide walls
-      physics.create(719, 90, 'wall').setSize(64, 200);
-      physics.create(879, 90, 'wall').setSize(64, 200);
-      physics.create(880, 432, 'wall').setSize(64, 200);
-      physics.create(720, 432, 'wall').setSize(64, 200);
-      physics.create(560, 432, 'wall').setSize(64, 200);
-      physics.create(400, 432, 'wall').setSize(64, 200);
-      physics.create(240, 432, 'wall').setSize(64, 200);
+      walls.create(719, 90, 'wall').setSize(64, 200);
+      walls.create(879, 90, 'wall').setSize(64, 200);
+      walls.create(880, 432, 'wall').setSize(64, 200);
+      walls.create(720, 432, 'wall').setSize(64, 200);
+      walls.create(560, 432, 'wall').setSize(64, 200);
+      walls.create(400, 432, 'wall').setSize(64, 200);
+      walls.create(240, 432, 'wall').setSize(64, 200);
       //hallway-facing walls
-      physics.create(176, 348, 'wall').setSize(55, 32);
-      physics.create(338, 348, 'wall').setSize(55, 32);
-      physics.create(500, 348, 'wall').setSize(55, 32);
-      physics.create(659, 348, 'wall').setSize(55, 32);
-      physics.create(821, 348, 'wall').setSize(55, 32);
-      physics.create(689, 188, 'wall').setSize(124, 32);
-      physics.create(849, 188, 'wall').setSize(124, 32);
-      physics.create(1009, 188, 'wall').setSize(124, 32);
+      walls.create(176, 348, 'wall').setSize(63, 32);
+      walls.create(338, 348, 'wall').setSize(63, 32);
+      walls.create(500, 348, 'wall').setSize(63, 32);
+      walls.create(659, 348, 'wall').setSize(63, 32);
+      walls.create(821, 348, 'wall').setSize(63, 32);
+      walls.create(689, 188, 'wall').setSize(124, 32);
+      walls.create(849, 188, 'wall').setSize(124, 32);
+      walls.create(1009, 188, 'wall').setSize(124, 32);
       //small blocks near exit
-      physics.create(896, 315, 'wall');
-      physics.create(991, 316, 'wall');
+      walls.create(896, 315, 'wall');
+      walls.create(991, 316, 'wall');
+
+
+
 
 //checks for interactionBox overlap
       this.physics.add.collider(player, interactables);
-      this.physics.add.collider(player, physics);
       this.physics.add.overlap(interactionBox, interactables, interaction);
 
 // sets the player hitbox without changing image size
