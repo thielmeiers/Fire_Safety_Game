@@ -135,7 +135,7 @@ class GameScene extends Phaser.Scene{
 
 //checks for interactionBox overlap
       this.physics.add.collider(player, interactables);
-
+      this.physics.add.collider(player, physics);
       this.physics.add.overlap(interactionBox, interactables, interaction);
 
 // sets the player hitbox without changing image size
