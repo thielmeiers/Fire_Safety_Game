@@ -45,7 +45,8 @@ class PreloaderScene extends Phaser.Scene{
     this.load.image('toaster', 'assets/Toaster.png');
     this.load.image('cord', 'assets/extensionCord.png');
     this.load.image('lamp', 'assets/lamp.png');
-    
+    this.load.image('extinguisher', 'assets/fireExtinguisher.png');
+
 
 
     // loads game audio

@@ -114,10 +114,11 @@ class GameScene extends Phaser.Scene{
       //lamp
       physics.create(120, 70, 'lamp').setSize(10, 10);
       physics.create(598, 470, 'lamp').setSize(10, 10);
+      //extinguisher
+      physics.create(250, 210, 'extinguisher').setSize(20, 25);
 
       //fire hazards
       hazards = [candle, toaster, extensionCord, closet];
-      console.log(hazards.indexOf(candle));
       candle = this.physics.add.staticSprite(445, 500, 'candle');
       toaster = physics.create(670, 156, 'toaster').toggleFlipY().setSize(20, 30);
       extensionCord = physics.create(768, 465, 'cord');
@@ -220,11 +221,8 @@ hazards
   update()  {
           if (firstRun == true){
             hazards = [candle, toaster, extensionCord, closet];
-            console.log('array length:' + hazards.length);
             firstRun = false;
           }
-          console.log(hazards.indexOf(candle));
-          console.log(hazards.indexOf(toaster));
           if(hazards.indexOf(candle) === 0){
             candle.anims.play('flicker', true);
           }
