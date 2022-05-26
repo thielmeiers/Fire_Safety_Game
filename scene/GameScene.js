@@ -17,10 +17,8 @@ var extensionCord
 var toaster
 var closet
 var hazards
-
-
-
 var physics
+var leaveAreaBox
 
 
 class GameScene extends Phaser.Scene{
@@ -70,6 +68,12 @@ class GameScene extends Phaser.Scene{
       player = this.physics.add.sprite(130, 300, 'dude');
       interactionBox.setX(player.x);
       interactionBox.setY(player.y);
+// creates level end area
+      leaveAreaBox = this.physics.add.sprite(960, 440, 'leaveAreaBox');
+      leaveAreaBox.visible = false;
+      leaveAreaBox.body.setImmovable(true);
+      leaveAreaBox.setSize(100, 220);
+
 
 //creates interactables
       interactables = this.physics.add.staticGroup();
@@ -154,6 +158,8 @@ class GameScene extends Phaser.Scene{
       this.physics.add.collider(player, interactables);
       this.physics.add.collider(player, physics);
       this.physics.add.overlap(interactionBox, interactables, interaction);
+//checks for player overlap with leaveAreaBox
+      this.physics.add.overlap(player, leaveAreaBox, exit);
 
 // sets the player hitbox without changing image size
       player.setSize(30,50,true);
@@ -308,7 +314,7 @@ function interaction(interactionBox, interactable){
         if(interactable == candle){
           candle.anims.stop();
         }
-        
+
         interactable.destroy();
         if(hazards.length == 0){
           console.log('array is empty');
@@ -317,3 +323,13 @@ function interaction(interactionBox, interactable){
 
     }
 };
+//called when the player enters the exit area of the map
+function exit(player, leaveAreaBox){
+    if(hazards.length == 0){
+      createGame.scene.start('LevelEnd', {isSuccessful : true});
+    }
+    else{
+      createGame.scene.start('LevelEnd', {isSuccessful : false});
+    }
+
+}

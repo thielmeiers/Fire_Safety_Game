@@ -55,7 +55,8 @@ class InfoScene extends Phaser.Scene{
     this.add.text(850, 490, 'appliances with "open" heating elements are not permitted')
     this.add.text(850, 510, 'in student dorms.')
     this.add.text(850, 530, 'Power strips connected to strong electrical loads could begin')
-    this.add.text(850, 550, 'heating of the wires to ')
+    this.add.text(850, 550, 'heating of the wires to')
+    this.add.text(850, 570, 'Windows may not be obstructed by large objects such as beds, \ndressers, TVs, etc.')
 
     this.add.text(1430, 700, '1430x700')
 
