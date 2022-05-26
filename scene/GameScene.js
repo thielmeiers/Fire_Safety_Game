@@ -304,9 +304,11 @@ function interaction(interactionBox, interactable){
         //removes interactable from hazards array
         var indexOfInteractable = hazards.indexOf(interactable);
         hazards.splice(indexOfInteractable, 1);
+
         if(interactable == candle){
           candle.anims.stop();
         }
+        
         interactable.destroy();
         if(hazards.length == 0){
           console.log('array is empty');
