@@ -108,10 +108,14 @@ class GameScene extends Phaser.Scene{
 
       //fire hazards
       hazards = [candle, toaster, extensionCord, closet];
-      candle = this.physics.add.sprite(445, 500, 'candle');
+      candle = this.physics.add.staticSprite(445, 500, 'candle');
       toaster = physics.create(670, 156, 'toaster').toggleFlipY();
       extensionCord = physics.create(768, 465, 'cord');
       closet = physics.create(155, 27, 'closet').toggleFlipX().toggleFlipY();
+      interactables.add(candle);
+      interactables.add(toaster);
+      interactables.add(extensionCord);
+      interactables.add(closet);
 
 //creates a lot of walls
 
@@ -202,7 +206,11 @@ class GameScene extends Phaser.Scene{
   }
 
   update()  {
+
+        if(hazards.includes(candle)){
           candle.anims.play('flicker', true);
+        }
+
     // variables used to follow player's x & y cords
           var scrol_x = player.x - game.config.width/2;
           var scrol_y = player.y - game.config.height/2;
@@ -293,12 +301,17 @@ export default GameScene
 //interaction function with win and lose testing paths
 function interaction(interactionBox, interactable){
     if(keys.E.isDown){
-      if(interactable == winTestBlock){
-        createGame.scene.start('LevelEnd', {isSuccessful : true});
-      }
-      else if(interactable == loseTestBlock){
-        createGame.scene.start('LevelEnd', {isSuccessful : false});
-      }
+        //removes interactable from hazards array
+        var indexOfInteractable = hazards.indexOf(interactable);
+        hazards.splice(indexOfInteractable, 1);
+        if(interactable == candle){
+          candle.anims.stop();
+        }
         interactable.destroy();
+        if(hazards.length == 0){
+          console.log('array is empty');
+        }
+
+
     }
 };
