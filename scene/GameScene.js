@@ -19,6 +19,7 @@ var closet
 var hazards
 var physics
 var leaveAreaBox
+var firstRun = true
 
 
 class GameScene extends Phaser.Scene{
@@ -110,10 +111,15 @@ class GameScene extends Phaser.Scene{
       physics.create(670,490,'bed').toggleFlipY().toggleFlipX(); // 4th room on bottom
       physics.create(830,490,'bed').toggleFlipY().toggleFlipX(); // 5th room on bottom
 
+      //lamp
+      physics.create(120, 70, 'lamp').setSize(10, 10);
+      physics.create(598, 470, 'lamp').setSize(10, 10);
+
       //fire hazards
       hazards = [candle, toaster, extensionCord, closet];
+      console.log(hazards.indexOf(candle));
       candle = this.physics.add.staticSprite(445, 500, 'candle');
-      toaster = physics.create(670, 156, 'toaster').toggleFlipY();
+      toaster = physics.create(670, 156, 'toaster').toggleFlipY().setSize(20, 30);
       extensionCord = physics.create(768, 465, 'cord');
       closet = physics.create(155, 27, 'closet').toggleFlipX().toggleFlipY();
       interactables.add(candle);
@@ -210,12 +216,18 @@ class GameScene extends Phaser.Scene{
       camera.setZoom(3);
 
   }
-
+hazards
   update()  {
-
-        if(hazards.includes(candle)){
-          candle.anims.play('flicker', true);
-        }
+          if (firstRun == true){
+            hazards = [candle, toaster, extensionCord, closet];
+            console.log('array length:' + hazards.length);
+            firstRun = false;
+          }
+          console.log(hazards.indexOf(candle));
+          console.log(hazards.indexOf(toaster));
+          if(hazards.indexOf(candle) === 0){
+            candle.anims.play('flicker', true);
+          }
 
     // variables used to follow player's x & y cords
           var scrol_x = player.x - game.config.width/2;

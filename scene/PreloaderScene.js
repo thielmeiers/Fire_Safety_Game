@@ -44,6 +44,8 @@ class PreloaderScene extends Phaser.Scene{
     this.load.spritesheet('candle', 'assets/candle.png', {frameWidth: 32, frameWidth: 32});
     this.load.image('toaster', 'assets/Toaster.png');
     this.load.image('cord', 'assets/extensionCord.png');
+    this.load.image('lamp', 'assets/lamp.png');
+    
 
 
     // loads game audio
