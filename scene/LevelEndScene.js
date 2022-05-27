@@ -25,7 +25,7 @@ class LevelEndScene extends Phaser.Scene{
         .setInteractive({ useHandCursor: true })
 
         .on('pointerover', () => { console.log('pointerovercontinue');})
-        .on('pointerup', () => this.scene.start('Boot'))
+        .on('pointerup', openSurvey, this)
         .on('pointerup', () => click.play())
 
       const backButton = this.add.text(100, 50, 'Return to menu')
@@ -63,3 +63,19 @@ class LevelEndScene extends Phaser.Scene{
   }
 }
 export default LevelEndScene
+function openSurvey ()
+{
+
+    var url = 'https://forms.gle/WHZMPbUEdhGppo3t8';
+
+    var s = window.open(url, '_blank');
+
+    if (s && s.focus)
+    {
+        s.focus();
+    }
+    else if (!s)
+    {
+        window.location.href = url;
+    }
+}
