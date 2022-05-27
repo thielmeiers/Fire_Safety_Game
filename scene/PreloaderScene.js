@@ -41,10 +41,10 @@ class PreloaderScene extends Phaser.Scene{
     this.load.image('closet','assets/Closet.png');
     this.load.image('desk','assets/Desk.png');
     this.load.image('window','assets/Window.png');
-    this.load.spritesheet('candle', 'assets/candle.png', {frameWidth: 32, frameWidth: 32});
+    this.load.spritesheet('candle', 'assets/Candle.png', {frameWidth: 32, frameWidth: 32});
     this.load.image('toaster', 'assets/Toaster.png');
     this.load.image('cord', 'assets/extensionCord.png');
-    this.load.image('lamp', 'assets/lamp.png');
+    this.load.image('lamp', 'assets/Lamp.png');
     this.load.image('extinguisher', 'assets/fireExtinguisher.png');
 
 
